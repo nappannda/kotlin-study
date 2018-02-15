@@ -11,6 +11,9 @@ class Rational(n: Int, d: Int) {
     val numerator: Int by lazy { n / g }
     val denominator: Int by lazy { d / g }
 
+    operator fun plus(n: Int): Rational =
+        Rational(numerator + n * denominator, denominator)
+
     operator fun plus(that: Rational): Rational =
         Rational(
                 numerator * that.denominator + that.numerator * denominator,

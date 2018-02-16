@@ -29,3 +29,6 @@ fun first(str: String, predicate: (Char) -> Boolean): Int {
         }
     return go(str, 0)
 }
+
+fun firstWhitespace(str: String): Int =
+    first(str) { it.isWhitespace() }

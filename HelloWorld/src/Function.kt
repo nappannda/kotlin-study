@@ -16,3 +16,14 @@ fun sum(numbers: List<Long>): Long {
         else go(numbers.drop(1), accumulator + numbers.first())
     return go(numbers, 0)
 }
+
+class Counter {
+    private var cnt = 0
+
+    fun countUp(): Unit {
+        cnt++
+        return Unit
+    }
+
+    fun getCount(): Int = cnt
+}

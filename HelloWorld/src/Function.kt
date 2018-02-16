@@ -10,6 +10,9 @@ fun main(args: Array<String>) {
     println(result)
 }
 
-tailrec fun sum(numbers: List<Long>, accumulator: Long = 0): Long =
-    if (numbers.isEmpty()) accumulator
-    else sum(numbers.drop(1), accumulator + numbers.first())
+fun sum(numbers: List<Long>): Long {
+    tailrec fun go(numbers: List<Long>, accumulator: Long): Long =
+        if (numbers.isEmpty()) accumulator
+        else go(numbers.drop(1), accumulator + numbers.first())
+    return go(numbers, 0)
+}

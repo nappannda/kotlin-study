@@ -1,28 +1,56 @@
 /**
  * Created by nappannda on 2018/02/17.
  */
-fun main(args: Array<String>) {
-    val bucket = object {
-        val capacity: Int = 5
+interface Bucket {
+    fun fill()
+    fun drainAway()
+    fun pourTo(that: Bucket)
 
-        var quantity: Int = 0
+    fun getCapacity(): Int
+    fun getQuantity(): Int
+    fun setQuantity(quantity: Int)
+}
 
-        fun fill() {
-            quantity = capacity
-        }
+fun createBucket(capacity: Int): Bucket = object : Bucket {
+    var _quantity = 0
 
-        fun drainAway() {
-            quantity = 0
-        }
+    override fun fill() {
+        setQuantity(getCapacity())
+    }
 
-        fun printQuantity() {
-            println(quantity)
+    override fun drainAway() {
+        setQuantity(0)
+    }
+
+    override fun pourTo(that: Bucket) {
+        val thatVacuity = that.getCapacity() - that.getQuantity()
+        if (getQuantity() <= thatVacuity) {
+            that.setQuantity(that.getQuantity() + getQuantity())
+            drainAway()
+        } else {
+            that.fill()
+            setQuantity(getQuantity() - thatVacuity)
         }
     }
 
-    bucket.printQuantity()
-    bucket.fill()
-    bucket.printQuantity()
-    bucket.drainAway()
-    bucket.printQuantity()
+    override fun getCapacity(): Int = capacity
+
+    override fun getQuantity(): Int = _quantity
+
+    override fun setQuantity(quantity: Int) {
+        _quantity = quantity
+    }
+}
+
+fun main(args: Array<String>) {
+    val bucket1 = createBucket(7)
+
+    val bucket2 = createBucket(4)
+
+    bucket1.fill()
+
+    bucket1.pourTo(bucket2)
+
+    println(bucket1.getQuantity())
+    println(bucket2.getQuantity())
 }

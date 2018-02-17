@@ -74,3 +74,13 @@ fun containsDigit(str: String): Boolean {
     }
     return result
 }
+
+val square1: (Int) -> Int = { i: Int ->
+    i * i
+}
+
+val square2: (Int) -> Int = fun(i: Int): Int {
+    return i * i
+}
+
+val square3: (Int) -> Int = fun(i: Int) = i * i

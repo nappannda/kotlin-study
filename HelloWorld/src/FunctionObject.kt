@@ -8,6 +8,15 @@ fun square(i: Int): Int = i * i
 fun main(args: Array<String>) {
     var functionObject = ::square
     println(functionObject(5))
+
+    val counter1 = getCounter()
+    val counter2 = getCounter()
+    println(counter1())
+    println(counter1())
+    println(counter2())
+    println(counter1())
+    println(counter2())
+
 }
 
 fun firstK(str: String): Int {
@@ -32,3 +41,10 @@ fun first(str: String, predicate: (Char) -> Boolean): Int {
 
 fun firstWhitespace(str: String): Int =
     first(str) { it.isWhitespace() }
+
+fun getCounter(): ()->Int {
+    var count = 0
+    return {
+        count++
+    }
+}

@@ -6,39 +6,33 @@ interface Bucket {
     fun drainAway()
     fun pourTo(that: Bucket)
 
-    fun getCapacity(): Int
-    fun getQuantity(): Int
-    fun setQuantity(quantity: Int)
+    val capacity: Int
+    var quantity: Int
 }
 
-fun createBucket(capacity: Int): Bucket = object : Bucket {
-    var _quantity = 0
+fun createBucket(_capacity: Int): Bucket = object : Bucket {
+
+    override val capacity = _capacity
+
+    override var quantity: Int = 0
 
     override fun fill() {
-        setQuantity(getCapacity())
+        quantity = capacity
     }
 
     override fun drainAway() {
-        setQuantity(0)
+        quantity = 0
     }
 
     override fun pourTo(that: Bucket) {
-        val thatVacuity = that.getCapacity() - that.getQuantity()
-        if (getQuantity() <= thatVacuity) {
-            that.setQuantity(that.getQuantity() + getQuantity())
+        val thatVacuity = that.capacity - that.quantity
+        if (capacity <= thatVacuity) {
+            that.quantity += quantity
             drainAway()
         } else {
             that.fill()
-            setQuantity(getQuantity() - thatVacuity)
+            quantity -= thatVacuity
         }
-    }
-
-    override fun getCapacity(): Int = capacity
-
-    override fun getQuantity(): Int = _quantity
-
-    override fun setQuantity(quantity: Int) {
-        _quantity = quantity
     }
 }
 
@@ -51,6 +45,6 @@ fun main(args: Array<String>) {
 
     bucket1.pourTo(bucket2)
 
-    println(bucket1.getQuantity())
-    println(bucket2.getQuantity())
+    println(bucket1.quantity)
+    println(bucket2.quantity)
 }

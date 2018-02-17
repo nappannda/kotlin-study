@@ -17,6 +17,9 @@ fun main(args: Array<String>) {
     println(counter1())
     println(counter2())
 
+    log { "このメッセージは出力される" }
+    log(false) { "このメッセージは出力されない" }
+
 }
 
 fun firstK(str: String): Int {
@@ -47,4 +50,27 @@ fun getCounter(): ()->Int {
     return {
         count++
     }
+}
+
+inline fun log(debug: Boolean = true, message: () -> String) {
+    if (debug) {
+        println(message())
+    }
+}
+
+inline fun forEach(str: String, f: (Char) -> Unit) {
+    for (c in str) {
+        f(c)
+    }
+}
+
+fun containsDigit(str: String): Boolean {
+    var result = false
+    forEach(str) {
+        if (it.isDigit()) {
+            result = true
+            return@forEach
+        }
+    }
+    return result
 }

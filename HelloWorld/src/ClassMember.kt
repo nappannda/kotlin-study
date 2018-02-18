@@ -27,6 +27,8 @@ fun main(args: Array<String>) {
     val half = Rational(1, 2)
     println(half.numerator)
     println(half.denominator)
+
+    println("I like Kotlin".wordsCount)
 }
 
 class Greeter {
@@ -47,3 +49,9 @@ class Person {
             return this.name.length
         }
 }
+
+fun String.countWords(): Int =
+        this.split("""\s+""".toRegex()).size
+
+val String.wordsCount: Int
+    get() = split("""\s+""".toRegex()).size

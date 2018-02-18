@@ -23,6 +23,10 @@ fun main(args: Array<String>) {
     println(hanako.name)
     println(hanako.age)
     println(hanako.nameLength)
+
+    val half = Rational(1, 2)
+    println(half.numerator)
+    println(half.denominator)
 }
 
 class Greeter {

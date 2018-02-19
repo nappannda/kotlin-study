@@ -54,17 +54,17 @@
 //    }
 //}
 
-interface Foo {
-    fun aaa()
-    fun bbb()
-}
-
-interface Bar: Foo {
-    override fun aaa() {}
-    fun ccc()
-}
-
-class Baz: Bar {
-    override fun bbb() {}
-    override fun ccc() {}
-}
+//interface Foo {
+//    fun aaa()
+//    fun bbb()
+//}
+//
+//interface Bar: Foo {
+//    override fun aaa() {}
+//    fun ccc()
+//}
+//
+//class Baz: Bar {
+//    override fun bbb() {}
+//    override fun ccc() {}
+//}

@@ -1,6 +1,8 @@
 /**
  * Created by nappannda on 2018/02/19.
  */
+package sample.hoge
+
 open class Person(open val name: String) {
     open fun introduceMyself() {
         println("I am ${name}")
@@ -36,3 +38,5 @@ class JapaneseGreeter(target: String) : Greeter(target) {
         println("こんにちは、$target")
     }
 }
+
+class Foo

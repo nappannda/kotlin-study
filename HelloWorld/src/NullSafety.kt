@@ -1,26 +1,12 @@
 /**
  * Created by nappannda on 2018/02/20.
  */
+
 fun main(args: Array<String>) {
-    val a: String? = null
-    val b: String? = "Hello"
+    fun square(i: Int): Int = i * i
 
-    if (a != null) {
-        println(a.toUpperCase())
-    }
+    val a: Int? = 5
+    val aInc: Int? = a?.inc()
 
-    if (b != null) {
-        println(b.toUpperCase())
-    }
-
-    val list: List<Any> = listOf(1, 'a', false)
-        for (e in list) {
-            val result: Any? = when (e) {
-                is Int -> e + 5
-                is Char -> e.toUpperCase()
-                is Boolean -> e.not()
-                else -> null
-            }
-            println(result)
-        }
+    val aSquare = a?.let { square(it) }
 }
